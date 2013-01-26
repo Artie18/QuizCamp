@@ -1,0 +1,17 @@
+﻿@if (Request.IsAuthenticated)
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_NotAuthenticatedLayout.cshtml";
+}
+<div>
+    @{
+        Html.RenderAction("Tasks", "Task", new { page = 1 }); 
+        Html.RenderPartial("Pagination");   
+    }
+</div>
+
+
+

@@ -1,0 +1,37 @@
+﻿@model CodeTask
+@{
+    Layout = Request.IsAuthenticated ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_NotAuthenticatedLayout.cshtml";
+}
+<script src="@Href("~/Scripts/Markdown.js")"></script>
+<div class="hero-unit" style="background-color: #B2B8BD">
+    <div class="controls">
+        <div class="span11">
+            <button class="btn btn-primary" id="authorButton" style="font-size: 19px; color: #000000;">
+                Author: <strong class="text-error">@Html.DisplayFor(model => model.User.Username)</strong>
+            </button>
+        </div>
+        <h2 id="@Model.CodeTaskId">@Html.DisplayFor(model => model.Name)</h2>
+    </div>
+    <div class="codeTaskContent" style="margin-left: 10%; margin-top: 5%;">@Html.DisplayFor(model => model.Content)</div>
+    <div id="submitArea">
+        @if (Model.SolvedUsers == null || Model.SolvedUsers.FirstOrDefault(x => x.Username == WebSecurity.User.Identity.Name) == null)
+        {
+            <h3 style="margin-left: 44%">Answer</h3>
+            <textarea id="answerTextArea" style="width: 100%" rows="3" data-url="@Url.Action("Answer", new {id = Model.CodeTaskId.ToString()})"></textarea>
+            <button class="btn btn-success" style="margin-left: 44%" id="submitAnswer">Submit</button>
+        }
+        else
+        {
+            <h2 class="text-success">Solved It</h2>
+        }
+    </div>
+    <div class="controls">
+        <div class="span11">
+            <button id="solvedTimes" class="btn btn-success">Solved: @Html.DisplayFor(model => model.SolvedUsers.Count)</button>
+        </div>
+        <button id="likeButton" data-url="@Url.Action("Like", new { id = @Model.CodeTaskId.ToString()})" 
+                onclick="incLikes('@Model.CodeTaskId.ToString()')" class="btn btn-info">
+            <p data-url="@Url.Action("GetLikes", new { id = @Model.CodeTaskId.ToString() })">Likes:</p>
+        </button>
+    </div>
+</div>

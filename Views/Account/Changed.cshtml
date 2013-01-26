@@ -1,0 +1,15 @@
+﻿@model String
+@{
+    ViewBag.Title = "Changed";
+    Layout = "~/Views/Shared/_NotAuthenticatedLayout.cshtml";
+}
+
+<div class="text-success pagination-centered" style="margin-top: 10%">
+    <h2>Your Login Information Has been Changed</h2>
+    <h3>Please Log In once again</h3>
+    <div id="loginForm" class="hero-unit">
+        @RenderPage("~/Views/Shared/_SharedLogin.cshtml")
+    </div>
+    <p>Or just go home</p>
+    <p>@Html.ActionLink("Go Home", "Index", "Home")</p>
+</div>

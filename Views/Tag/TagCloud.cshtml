@@ -1,0 +1,9 @@
+﻿@model List<QuizCamp.ViewModels.TagViewModel>
+
+<script src="@Href("~/Scripts/Ajax/Tags.js")"></script>
+<div id="tagCloud">
+    @foreach (var tag in Model)
+    {
+        <button class="btn btn-large">@tag.Name</button>
+    }
+</div>

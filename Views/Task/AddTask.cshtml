@@ -1,0 +1,70 @@
+﻿@model QuizCamp.ViewModels.TaskViewModel
+@if (Request.IsAuthenticated)
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_NotAuthenticatedLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "AddTask";
+}
+<script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepEditor.js")"></script>
+<script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepEditorUI.js")"></script>
+<script src="@Href("~/Scripts/Markdown.js")"></script>
+<link rel="stylesheet" href="@Href("~/Scripts/mdd_styles.css")" type="text/css" />
+
+@using (Html.BeginForm("AddTask", "Task", FormMethod.Post))
+{
+    <div style="text-align: center" class="well">
+        <div>
+            <h3 class="control-label">Title</h3>
+            <div style="margin-left: 41%" class="input-xlarge">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <h3 class="control-label">Content</h3>
+
+            <div class="mdd_toolbar"></div>
+            <div>@Html.TextAreaFor(model => model.Content, new { @class = "mdd_editor", @cols = 50, @rows = 10, })</div>
+            <div class="mdd_preview"></div>
+            <div class="controls">
+                <div class="span4">
+                    <h3 class="control-label">Answer</h3>
+                </div>
+                <div class="span4">
+                    <h3 class="control-label">Tags</h3>
+                </div>
+                <div class="span4">
+                    <h3 class="control-label">Platform</h3>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="span4">
+                    <div class="input-xxlarge">
+                        @Html.EditorFor(model => model.Answer)
+                        @Html.ValidationMessageFor(model => model.Answer)
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="input-xxlarge">
+                        @Html.EditorFor(model => model.Tags)
+                    </div>
+                </div>
+                <div class="span4">
+                    <div id="addPlatformDiv" class="input-xxlarge" data-url ="@Url.Action("LoadPlatforms")" >
+                        <select class="text-box single-line" data-val="true" data-val-required="The Name field is required." id="Platform_Name" name="Platform.Name" type="text" value="">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <button class="btn btn-large btn-success" type="submit" value="AddTask">Add It</button>
+        
+    </div>
+
+}

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";    
+}
+
+@if (!Request.IsAuthenticated)
+{
+    @RenderPage("NewIndex.cshtml")
+}
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <div>
+        <h3 style="margin-left: 40%">Hello, @WebSecurity.User.Identity.Name</h3>
+        <div>
+            @{
+    Html.RenderAction("Tasks", "Task", new { page = 1 });  
+    Html.RenderPartial("Pagination");  
+            }
+
+        </div>
+    </div>
+}
+

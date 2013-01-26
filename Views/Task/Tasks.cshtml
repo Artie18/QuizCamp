@@ -1,0 +1,54 @@
+﻿@model List<CodeTask>
+
+<script src="@Href("~/Scripts/Markdown.js")"></script>
+<script src="@Href("~/Scripts/Ajax/Paginator.js")"></script>
+<div id="tasks">
+    @foreach (var task in Model)
+    {
+            <div class="hero-unit" style="background-color: #F2F2F2">
+                <div class="pull-left">
+                    @Html.ActionLink(@task.User.Username, "Index", "Account", new { id = task.User.UserId }, null)
+                </div>
+                <ul class="nav pull-right">
+                    <li>@task.Platform.Name</li>
+                </ul>
+                <div>
+                    <div style="margin-top: 3%;" class="controls">
+                        <div class="span11">
+                            <h4>@Html.ActionLink(@task.Name, "Details", "Task", new { id = task.CodeTaskId }, new { style = "color : #323232; border-bottom: solid" })</h4>
+                        </div>
+                        <div>
+                            @if (task.SolvedUsers == null)
+                            {
+                                <h4>Solved: 0</h4>
+                            }
+                            else
+                            {
+                               <h4>Solved: @task.SolvedUsers.Count</h4>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="hero-unit codeTaskContent" style="background-color: #F2F2F2; border: dashed;">@task.Content</div>
+                    <div class="controls">
+                        <div class="span11">
+                            <p class="text-warning">Added Time: @task.TimeAded</p>
+                        </div>
+                        @if (task.LikedUsers == null)
+                        {
+                            <p style="color: blue">Likes: 0</p>
+                        }
+                        else
+                        {
+                            <p style="color: blue">Likes: @task.LikedUsers.Count</p>
+                        }
+                    </div>
+                    <button class="btn">@Html.ActionLink("Read More", "Details", "Task", new { id = task.CodeTaskId }, null)</button>
+                     @foreach (var tag in task.Tags)
+                            {
+                                <code>@tag.Name</code>
+                            }
+                </div>
+            </div>
+    }
+</div>

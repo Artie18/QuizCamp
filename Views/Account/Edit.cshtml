@@ -1,0 +1,75 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div class="hero-unit">
+        <div class="editor-label">
+            UserName
+        </div>
+        <div class="label">
+            UserName
+        </div>
+        <div class="label">
+            @Model.Username
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+        <div class="label">
+            Email
+        </div>
+        <div class="label">
+            @Model.Email
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="label">
+            First Name
+        </div>
+        <div class="label">
+            @Model.FirstName
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="label">
+            Last Name
+        </div>
+        <div class="label">
+            @Model.LastName
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            Discription
+        </div>
+        <div class="editor-field">
+            @Model.Comment
+            @Html.EditorFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+
+        <button class="btn btn-success" type="submit">Save</button>
+
+    </div>
+}
+

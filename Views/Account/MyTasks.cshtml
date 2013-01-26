@@ -1,0 +1,26 @@
+﻿@model List<CodeTask>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin-left: 90%">MyTasks</h1>
+<div class="hero-unit">
+   <table class="table table-hover">
+     <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <th>@Html.DisplayFor(modelTask => task.Name)</th>
+                <th>@Html.DisplayFor(modelTask => task.Platform.Name)</th>
+                <th>@Html.DisplayFor(modelTask => task.SolvedUsers.Count)</th>
+                <th>
+                    <button class="btn-success">@Html.ActionLink("View", "Details", "Task", new { id = task.CodeTaskId }, null)</button></th>
+                 <th>
+                    <button class="btn-success">@Html.ActionLink("Edit", "Edit", "Task", new { id = task.CodeTaskId }, null)</button></th>
+            </tr>
+        }
+    </tbody>
+    </table>
+</div>
+
+
