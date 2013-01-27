@@ -167,21 +167,18 @@
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\JS\Ajax.js" />
+    <Content Include="Scripts\Ajax\Ajax.js" />
     <Content Include="Content\JS\bootstrap.js" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\JS\bootstrap.min.js" />
     <Content Include="Content\Images\glyphicons-halflings-white.png" />
     <Content Include="Content\Images\glyphicons-halflings.png" />
     <Content Include="Content\Images\MainPageImange.png" />
-    <Content Include="Content\JS\jquery-1.9.0.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\JS\bootstrap.min.js.map">
       <DependentUpon>bootstrap.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Ajax\Paginator.coffee" />
     <Content Include="Scripts\Ajax\Tags.coffee" />
-    <Content Include="Scripts\Ajax\TagsButtonHandeler.coffee" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\Ajax\Paginator.js">
       <DependentUpon>Paginator.coffee</DependentUpon>
@@ -195,34 +192,28 @@
     <Content Include="Scripts\Ajax\Tags.min.js">
       <DependentUpon>Tags.coffee</DependentUpon>
     </Content>
-    <Content Include="Scripts\Ajax\TagsButtonHandeler.js">
-      <DependentUpon>TagsButtonHandeler.coffee</DependentUpon>
-    </Content>
-    <Content Include="Scripts\Ajax\TagsButtonHandeler.min.js">
-      <DependentUpon>TagsButtonHandeler.coffee</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
-    <Content Include="Scripts\Markdown.js" />
-    <Content Include="Scripts\Markdown.min.js">
+    <Content Include="Scripts\Markdown\Markdown.js" />
+    <Content Include="Scripts\Markdown\Markdown.min.js">
       <DependentUpon>Markdown.coffee</DependentUpon>
     </Content>
-    <Content Include="Scripts\MarkdownDeep License.txt" />
-    <Content Include="Scripts\MarkdownDeep Quick Reference.txt" />
-    <Content Include="Scripts\MarkdownDeepEditor.js" />
-    <Content Include="Scripts\MarkdownDeepEditorUI.js" />
-    <Content Include="Scripts\MarkdownDeepLib.min.js" />
-    <Content Include="Scripts\mdd_ajax_loader.gif" />
-    <Content Include="Scripts\mdd_gripper.png" />
-    <Content Include="Scripts\mdd_help.htm" />
-    <Content Include="Scripts\mdd_modal_background.png" />
-    <Content Include="Scripts\mdd_styles.css" />
-    <Content Include="Scripts\mdd_toolbar.png" />
-    <Content Include="Scripts\Scripts.js">
-      <DependentUpon>Scripts.coffee</DependentUpon>
+    <Content Include="Scripts\Markdown\MarkdownDeep License.txt" />
+    <Content Include="Scripts\Markdown\MarkdownDeep Quick Reference.txt" />
+    <Content Include="Scripts\Markdown\MarkdownDeepEditor.js" />
+    <Content Include="Scripts\Markdown\MarkdownDeepEditorUI.js" />
+    <Content Include="Scripts\Markdown\MarkdownDeepLib.min.js" />
+    <Content Include="Scripts\Markdown\mdd_ajax_loader.gif" />
+    <Content Include="Scripts\Markdown\mdd_gripper.png" />
+    <Content Include="Scripts\Markdown\mdd_help.htm" />
+    <Content Include="Scripts\Markdown\mdd_modal_background.png" />
+    <Content Include="Scripts\Markdown\mdd_styles.css" />
+    <Content Include="Scripts\Markdown\mdd_toolbar.png" />
+    <Content Include="Scripts\Ajax\Scripts.js">
+      <DependentUpon>TaskDetails.coffee</DependentUpon>
     </Content>
-    <Content Include="Scripts\Scripts.min.js">
-      <DependentUpon>Scripts.coffee</DependentUpon>
+    <Content Include="Scripts\Ajax\Scripts.min.js">
+      <DependentUpon>TaskDetails.coffee</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -238,13 +229,13 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Changed.cshtml" />
-    <Content Include="Scripts\Markdown.coffee" />
-    <Content Include="Scripts\Scripts.coffee" />
+    <Content Include="Scripts\Markdown\Markdown.coffee" />
+    <Content Include="Scripts\Ajax\TaskDetails.coffee" />
     <Content Include="Views\Task\Tasks.cshtml" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Tag\TagCloud.cshtml" />
-    <Content Include="Views\Account\MyTasks.cshtml" />
+    <Content Include="Views\Task\MyTasks.cshtml" />
     <Content Include="Views\Task\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +309,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Task\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{35e4a7cd-b9a6-4e6c-bd0b-3ee9c56b0799}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

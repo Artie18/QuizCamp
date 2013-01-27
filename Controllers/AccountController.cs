@@ -7,45 +7,35 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using QuizCamp.Models.Providers;
 using QuizCamp.ViewModels;
 
 namespace QuizCamp.Controllers
 {
     public class AccountController : Controller
     {
-        private DataContext db = new DataContext();
+        AccountProvider account = new AccountProvider();
         //
         // GET: /Account/
 
         public ActionResult Index(Guid id)
         {
-                return View(db.Users.Find(id));
+                return View(account.GetById(id));
         }
 
         public ActionResult MyProfile()
         {
-            return View("Index", db.Users.FirstOrDefault(x => x.Username == WebSecurity.User.Identity.Name));
+            return View("Index", account.GetLogedInUser());
         }
 
-        public ActionResult MyTasks()
-        {
-            return View(db.CodeTasks.ToList());
-        }
-
+  
         
         [HttpPost]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
-                user.IsApproved = true;
-                user.UserId = Guid.NewGuid();
-                db.Users.Add(user);
-
-                db.SaveChanges();
-                /*  MailMessage email = new MailMessage("art@gart.com", "artyomvirusnyak@gmail.com", "working", "cool");
-                  SmtpClient eClient = new SmtpClient();
-                  eClient.Send(email);*/
+                account.Register(user);
                 return RedirectToAction("RegistartionComplite", "Account");
             }
             return View(User);
@@ -83,13 +73,13 @@ namespace QuizCamp.Controllers
 
         public ActionResult Edit()
         {
-            return View(db.Users.FirstOrDefault(x => x.Username == WebSecurity.User.Identity.Name));
+            return View(account.GetLogedInUser());
         }
 
         [HttpPost]
         public ActionResult Edit(User user)
         {
-            User dbUser = db.Users.Find(db.Users.FirstOrDefault(x => x.Username == WebSecurity.User.Identity.Name).UserId);
+            var dbUser = account.GetLogedInUser();
             dbUser.FirstName = user.FirstName;
             dbUser.LastName = user.LastName;
             dbUser.Email = user.Email;
@@ -99,10 +89,10 @@ namespace QuizCamp.Controllers
             {
                 WebSecurity.Logout();
                 dbUser.Username = user.Username;
-                db.SaveChanges();
+                account.SaveChanges();
                 return RedirectToAction("Changed", "Account", "Username");
             }
-            db.SaveChanges();
+            account.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
 

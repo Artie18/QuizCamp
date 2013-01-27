@@ -104,7 +104,7 @@ namespace QuizCamp.Controllers
         public ActionResult Edit(TaskViewModel taskView)
         {
             taskProvider.UpdateCodeTask(taskView);
-            return RedirectToAction("MyTasks","Account");
+            return RedirectToAction("MyTasks");
             
         }
 
@@ -135,6 +135,11 @@ namespace QuizCamp.Controllers
         public ActionResult Tasks(string page, string tagName)
         {
             return View(taskProvider.GetTasks(page, tagName));
+        }
+
+        public ActionResult MyTasks()
+        {
+            return View(db.CodeTasks.ToList());
         }
     }
 }

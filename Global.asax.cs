@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -22,12 +24,15 @@ namespace QuizCamp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             System.Data.Entity.Database.SetInitializer<DataContext>(new DataContextInitializer());
             Database.SetInitializer(new DropCreateDatabaseAlways<DataContext>());
-            
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru");
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
 	        using (var dataContext = new DataContext())
             {
                dataContext.Users.Count();
             }
              
         }
+
+
     }
 }

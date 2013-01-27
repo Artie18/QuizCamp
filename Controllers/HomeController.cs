@@ -13,8 +13,6 @@ namespace QuizCamp.Controllers
 
         public ActionResult Index()
         {
-            DataContext dataContext = new DataContext();
-
             return View();
         }
 
