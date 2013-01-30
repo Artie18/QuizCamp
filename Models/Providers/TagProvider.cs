@@ -7,7 +7,7 @@ using QuizCamp.ViewModels;
 
 namespace QuizCamp.Models.Providers
 {
-    public class TagModel : DatabaseInitializer
+    public class TagProvider : DatabaseInitializer
     {
         public List<TagViewModel> GetTags()
         {

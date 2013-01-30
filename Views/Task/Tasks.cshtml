@@ -1,6 +1,6 @@
 ﻿@model List<CodeTask>
 
-<script src="@Href("~/Scripts/Markdown.js")"></script>
+<script src="@Href("~/Scripts/Markdown/Markdown.js")"></script>
 <script src="@Href("~/Scripts/Ajax/Paginator.js")"></script>
 <div id="tasks">
     @foreach (var task in Model)
@@ -20,11 +20,11 @@
                         <div>
                             @if (task.SolvedUsers == null)
                             {
-                                <h4>Solved: 0</h4>
+                                <h4>@Resources.Resources.Solved : 0</h4>
                             }
                             else
                             {
-                               <h4>Solved: @task.SolvedUsers.Count</h4>
+                               <h4>@Resources.Resources.Solved : @task.SolvedUsers.Count</h4>
                             }
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                     <div class="hero-unit codeTaskContent" style="background-color: #F2F2F2; border: dashed;">@task.Content</div>
                     <div class="controls">
                         <div class="span11">
-                            <p class="text-warning">Added Time: @task.TimeAded</p>
+                            <p class="text-warning">@Resources.Resources.AddedTime @task.TimeAded</p>
                         </div>
                         @if (task.LikedUsers == null)
                         {
@@ -43,7 +43,7 @@
                             <p style="color: blue">Likes: @task.LikedUsers.Count</p>
                         }
                     </div>
-                    <button class="btn">@Html.ActionLink("Read More", "Details", "Task", new { id = task.CodeTaskId }, null)</button>
+                    <button class="btn">@Html.ActionLink(@Resources.Resources.ReadMore, "Details", "Task", new { id = task.CodeTaskId }, null)</button>
                      @foreach (var tag in task.Tags)
                             {
                                 <code>@tag.Name</code>

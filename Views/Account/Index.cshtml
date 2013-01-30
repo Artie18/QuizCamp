@@ -1,4 +1,5 @@
 ﻿@model User
+@Html.Action("Localization", "Home")
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,8 +13,14 @@
     </div>
     <div class="row">
         <div class="span4">
-            <table class="table table-hover">
-                <tbody>
+           <h2>@Resources.Resources.MyTasks</h2>
+             <table class="table table-hover">
+                <tr>
+                    <th>@Resources.Resources.Tittle</th>
+                    <th>@Resources.Resources.Platform</th>
+                    <th>@Resources.Resources.Solved</th>
+                </tr>
+                 <tbody>
                     @foreach (var task in Model.Tasks)
                     {
                         <tr>
@@ -21,14 +28,33 @@
                             <th>@Html.DisplayFor(modelTask => task.Platform.Name)</th>
                             <th>@Html.DisplayFor(modelTask => task.SolvedUsers.Count)</th>
                             <th>
-                                <button class="btn-success">@Html.ActionLink("View", "Details", "Task", new { id = task.CodeTaskId }, null)</button></th>
+                                <button class="btn-success">@Html.ActionLink(@Resources.Resources.View, "Details", "Task", new { id = task.CodeTaskId }, null)</button></th>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
         <div class="span8">
-            <h1>HI</h1>
+            <h2>@Resources.Resources.TasksISolved</h2>
+            <table class="table table-hover">
+                <tr>
+                    <th>@Resources.Resources.Tittle</th>
+                    <th>@Resources.Resources.Author</th>
+                    <th>@Resources.Resources.Solved</th>
+                </tr>
+                <tbody>
+                    @foreach (var task in Model.SolvedTasks)
+                    {
+                        <tr>
+                            <th>@Html.DisplayFor(modelTask => task.Name)</th>
+                            <th>@Html.DisplayFor(modelTask => task.User.Username)</th>
+                            <th>@Html.DisplayFor(modelTask => task.SolvedUsers.Count)</th>
+                            <th>
+                                <button class="btn-success">@Html.ActionLink(@Resources.Resources.View, "Details", "Task", new { id = task.CodeTaskId }, null)</button></th>
+                        </tr>
+                    }
+                </tbody>
+            </table> 
         </div>
     </div>
 </div>

@@ -9,19 +9,15 @@ using QuizCamp.ViewModels;
 
 namespace QuizCamp.Models.Providers
 {
-    public class TaskModel
+    public class TaskProvider : DatabaseInitializer
     {
-        private DataContext db;
-
-        public TaskModel(DataContext db)
-        {
-            this.db = db;
-
-        }
+       
 
         public void AddTask(TaskViewModel task)
         {
-
+            var platform = db.Platforms.FirstOrDefault(x => x.Name == task.Platform.Name);
+            if (platform == null) 
+                return;
             var codeTask = new CodeTask
                 {
                     User = db.Users.FirstOrDefault(x => x.Username == WebSecurity.User.Identity.Name),
@@ -30,13 +26,14 @@ namespace QuizCamp.Models.Providers
                     Name = task.Name,
                     Content = task.Content,
                     Answer = task.Answer,
+                    Platform = platform,
                 };
-            codeTask.Platform = db.Platforms.FirstOrDefault(x => x.Name == task.Platform.Name);
             db.CodeTasks.Add(codeTask);
             AddTags(task.Tags, codeTask.CodeTaskId);
             db.SaveChanges();
-
         }
+
+
 
         public void AddTags(string tagsString, Guid codeTaskId)
         {
@@ -130,23 +127,33 @@ namespace QuizCamp.Models.Providers
 
         public List<T> GetPageList<T>(int tasksPage, int page, List<T> list)
         {
-            var tasksOnPage = tasksPage;
+           
 
             if (tasksPage * page > list.Count())
-                tasksOnPage = list.Count() - tasksPage * (page - 1);
-            if (tasksOnPage < 0)
+                tasksPage = list.Count() - tasksPage * (page - 1);
+            if (tasksPage < 0)
                 return new List<T>();
-            return list.ToList().GetRange(tasksPage * page - tasksPage, tasksOnPage);
+            return list.ToList().GetRange(tasksPage * page - tasksPage, tasksPage);
 
         }
 
         public void UpdateCodeTask(TaskViewModel taskView)
         {
-            var task = db.CodeTasks.Find(taskView.TaskId);
-            task.Answer = taskView.Answer;
-            task.Content = taskView.Content;
-            task.Name = taskView.Name;
-            task.Platform = db.Platforms.FirstOrDefault(x => x.Name == taskView.Platform.Name);
+            CodeTask task = null;
+            
+            if(db.CodeTasks.FirstOrDefault(x => x.Name  == taskView.Name) != null)
+                task = db.CodeTasks.FirstOrDefault(x => x.Name  == taskView.Name);
+            if (db.CodeTasks.FirstOrDefault(x => x.Answer == taskView.Answer) != null)
+                task = db.CodeTasks.FirstOrDefault(x => x.Answer == taskView.Answer);
+
+
+            if (task != null)
+            {
+                task.Answer = taskView.Answer;
+                task.Content = taskView.Content;
+                task.Name = taskView.Name;
+                task.Platform = db.Platforms.FirstOrDefault(x => x.Name == taskView.Platform.Name);
+            }
             db.SaveChanges();
         }
 

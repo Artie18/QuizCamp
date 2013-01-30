@@ -1,16 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@Html.Action("Localization", "Home")
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-     <link rel="stylesheet" href="@Href("~/Content/bootstrap-responsive.css")" type="text/css" />
+    <link rel="stylesheet" href="@Href("~/Content/bootstrap-responsive.css")" type="text/css" />
     <link rel="stylesheet" href="@Href("~/Content/bootstrap-responsive.min.css")" type="text/css" />
     <link rel="stylesheet" href="@Href("~/Content/bootstrap.min.css")" type="text/css" />
     <link rel="stylesheet" href="@Href("~/Content/bootstrap.css")" type="text/css" />
-    <script src="@Href("~/Content/JS/jquery-1.9.0.js")"></script>
-    <script src="@Href("~/Content/JS/Ajax.js")"></script>
-    <script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepLib.min.js")"></script>
-    <script type="text/javascript" src="@Href("~/Scripts/Scripts.js")"></script>
+    <script src="@Href("~/Scripts/jquery-1.9.0.js")"></script>
+    <script src="@Href("~/Scripts/Ajax/Ajax.js")"></script>
+    <script type="text/javascript" src="@Href("~/Scripts/Markdown/MarkdownDeepLib.min.js")"></script>
+    <script type="text/javascript" src="@Href("~/Scripts/Ajax/TaskDetails.js")"></script>
 </head>
 <body>
     <header>
@@ -20,13 +21,13 @@
                 <div class="nav-collapse  collapse pull-right">
                     <ul class="nav close navbar-text">
                         <li>
-                            @Html.ActionLink("Home", "Index", "Home")
+                            @Html.ActionLink(@Resources.Resources.Home, "Index", "Home")
                         </li>
                         <li>
-                            @Html.ActionLink("Tasks", "Index", "Task")
+                            @Html.ActionLink(@Resources.Resources.Tasks, "Index", "Task")
                         </li>
                         <li>
-                             @Html.ActionLink("Log In", "Login", "Account")
+                             @Html.ActionLink(@Resources.Resources.LogIn, "Login", "Account")
                         </li>
                     </ul>
                 </div>

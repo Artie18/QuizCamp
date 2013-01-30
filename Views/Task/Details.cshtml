@@ -1,8 +1,10 @@
 ﻿@model CodeTask
+@Html.Action("Localization", "Home")
 @{
     Layout = Request.IsAuthenticated ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_NotAuthenticatedLayout.cshtml";
 }
-<script src="@Href("~/Scripts/Markdown.js")"></script>
+<script src="@Href("~/Scripts/Markdown/Markdown.js")"></script>
+<script src="@Href("~/Scripts/Ajax/TaskDetails.js")"></script>
 <div class="hero-unit" style="background-color: #B2B8BD">
     <div class="controls">
         <div class="span11">
@@ -27,7 +29,7 @@
     </div>
     <div class="controls">
         <div class="span11">
-            <button id="solvedTimes" class="btn btn-success">Solved: @Html.DisplayFor(model => model.SolvedUsers.Count)</button>
+            <button id="solvedTimes" class="btn btn-success">@Resources.Resources.Solved @Html.DisplayFor(model => model.SolvedUsers.Count)</button>
         </div>
         <button id="likeButton" data-url="@Url.Action("Like", new { id = @Model.CodeTaskId.ToString()})" 
                 onclick="incLikes('@Model.CodeTaskId.ToString()')" class="btn btn-info">

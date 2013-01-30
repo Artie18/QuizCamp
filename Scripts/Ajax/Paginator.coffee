@@ -1,7 +1,7 @@
 ﻿$ ->
 	currentPage = 1
 	$('.pagination > ul > li').bind('click', ->
-		if $(this.children).text() == 'Next'
+		if $(this.children).attr('id') == 'next'
 			currentPage = currentPage + 1
 		else
 			currentPage = currentPage - 1
@@ -24,6 +24,7 @@
 						$('.pagination > ul > li').removeAttr('class')			
 						$($('.pagination > ul > li > a')[1]).text(currentPage)
 						$($('.pagination > ul > li')[3]).addClass('active')
+					history.pushState(null, '', 'task/tasks?page=' + currentPage)
 					$('div #tasks').empty()
 					$('div #tasks').append(data)
 					array = $('.codeTaskContent')

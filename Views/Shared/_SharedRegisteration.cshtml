@@ -1,21 +1,21 @@
 ﻿@model User
-
+@Html.Action("Localization", "Home")
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
 
     <div>
         <div style="margin-top: 5%" >
-            <input  class="text-box single-line" data-val="true" data-val-required="The Username field is required." placeholder="User Name" id="Username" name="Username" type="text" value="">
+            <input  class="text-box single-line" data-val="true" data-val-required="The Username field is required." placeholder="@Resources.Resources.UserName" id="Username" name="Username" type="text" value="">
             @Html.ValidationMessageFor(model => model.Username)
         </div>
         <div class="input-xlarge">
-          <input class="text-box single-line" data-val="true" placeholder="Email" data-val-required="The Email field is required." id="Email" name="Email" type="email" value="">
+          <input class="text-box single-line" data-val="true" placeholder="@Resources.Resources.Email" data-val-required="The Email field is required." id="Email" name="Email" type="email" value="">
             @Html.ValidationMessageFor(model => model.Email)
         </div>
         <div class="input-xlarge">
-            <input class="text-box single-line password" data-val="true" placeholder="Password" data-val-required="The Password field is required." id="Password" name="Password" type="password" value="">
+            <input class="text-box single-line password" data-val="true" placeholder="@Resources.Resources.Password" data-val-required="The Password field is required." id="Password" name="Password" type="password" value="">
             @Html.ValidationMessageFor(model => model.Password)
         </div>
-        <button class="btn btn-large btn-success" type="submit" value="Register">Register</button>
+        <button class="btn btn-large btn-success" type="submit" value="Register">@Resources.Resources.Register</button>
     </div>
 }

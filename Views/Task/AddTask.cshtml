@@ -1,4 +1,5 @@
 ﻿@model QuizCamp.ViewModels.TaskViewModel
+@Html.Action("Localization", "Home")
 @if (Request.IsAuthenticated)
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,35 +12,35 @@ else
 @{
     ViewBag.Title = "AddTask";
 }
-<script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepEditor.js")"></script>
-<script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepEditorUI.js")"></script>
-<script src="@Href("~/Scripts/Markdown.js")"></script>
-<link rel="stylesheet" href="@Href("~/Scripts/mdd_styles.css")" type="text/css" />
+<script type="text/javascript" src="@Href("~/Scripts/Markdown/MarkdownDeepEditor.js")"></script>
+<script type="text/javascript" src="@Href("~/Scripts/Markdown/MarkdownDeepEditorUI.js")"></script>
+<script src="@Href("~/Scripts/Markdown/Markdown.js")"></script>
+<link rel="stylesheet" href="@Href("~/Scripts/Markdown/mdd_styles.css")" type="text/css" />
 
 @using (Html.BeginForm("AddTask", "Task", FormMethod.Post))
 {
     <div style="text-align: center" class="well">
         <div>
-            <h3 class="control-label">Title</h3>
+            <h3 class="control-label">@Resources.Resources.Tittle</h3>
             <div style="margin-left: 41%" class="input-xlarge">
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
 
-            <h3 class="control-label">Content</h3>
+            <h3 class="control-label">@Resources.Resources.Content</h3>
 
             <div class="mdd_toolbar"></div>
             <div>@Html.TextAreaFor(model => model.Content, new { @class = "mdd_editor", @cols = 50, @rows = 10, })</div>
             <div class="mdd_preview"></div>
             <div class="controls">
                 <div class="span4">
-                    <h3 class="control-label">Answer</h3>
+                    <h3 class="control-label">@Resources.Resources.Answer</h3>
                 </div>
                 <div class="span4">
-                    <h3 class="control-label">Tags</h3>
+                    <h3 class="control-label">@Resources.Resources.Tags</h3>
                 </div>
                 <div class="span4">
-                    <h3 class="control-label">Platform</h3>
+                    <h3 class="control-label">@Resources.Resources.Platform</h3>
                 </div>
             </div>
             <div class="controls">
@@ -63,7 +64,7 @@ else
             </div>
         </div>
         
-            <button class="btn btn-large btn-success" type="submit" value="AddTask">Add It</button>
+            <button class="btn btn-large btn-success" type="submit" value="AddTask">@Resources.Resources.AddIt</button>
         
     </div>
 

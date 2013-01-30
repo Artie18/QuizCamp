@@ -16,7 +16,7 @@ namespace QuizCamp.Controllers
     public class TaskController : Controller
     {
         private static DataContext db = new DataContext();
-        private TaskModel taskProvider = new TaskModel(db);
+        private TaskProvider taskProvider = new TaskProvider();
         //
         // GET: /CodeTask/
 
@@ -90,11 +90,11 @@ namespace QuizCamp.Controllers
                 var task = taskProvider.GetById(taskId);
                 return View(new TaskViewModel
                 {
+                    TaskId = task.CodeTaskId,
                     Name = task.Name,
                     Content = task.Content,
                     Answer = task.Answer,
                     Platform = task.Platform,
-                    TaskId = task.CodeTaskId,
                 });
             }
             return View();
@@ -104,8 +104,7 @@ namespace QuizCamp.Controllers
         public ActionResult Edit(TaskViewModel taskView)
         {
             taskProvider.UpdateCodeTask(taskView);
-            return RedirectToAction("MyTasks");
-            
+            return RedirectToAction("MyTasks");  
         }
 
 

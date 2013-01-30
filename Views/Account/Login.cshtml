@@ -1,5 +1,5 @@
 ﻿@model QuizCamp.ViewModels.LoginModel
-
+@Html.Action("Localization", "Home")
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_NotAuthenticatedLayout.cshtml";
@@ -12,9 +12,9 @@
     using (Html.BeginForm("LogIn", "Account", FormMethod.Post))
     {
     <div style="margin-left: 45%">
-        <h1>Please LogIn</h1>
+        <h1>@Resources.Resources.Please @Resources.Resources.LogIn</h1>
         <div class="control-label">
-            @Html.LabelFor(model => model.Username)
+            <label>@Resources.Resources.UserName</label>
         </div>
         <div class="input-xlarge">
             @Html.EditorFor(model => model.Username)
@@ -22,7 +22,7 @@
         </div>
 
         <div class="control-label">
-            @Html.LabelFor(model => model.Password)
+           <label>@Resources.Resources.Password</label>
         </div>
         <div class="input-xlarge">
             @Html.EditorFor(model => model.Password)
@@ -30,7 +30,7 @@
         </div>
 
         <button class="btn btn-large btn-success" type="submit" value="Login">
-            LogIn
+            @Resources.Resources.LogIn
         </button>
     </div>
     }

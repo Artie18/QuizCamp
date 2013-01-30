@@ -27,20 +27,23 @@ namespace QuizCamp.Controllers
         {
             return View("Index", account.GetLogedInUser());
         }
-
-  
+ 
         
         [HttpPost]
         public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
-                account.Register(user);
+                if (account.Register(user) == false)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 return RedirectToAction("RegistartionComplite", "Account");
             }
-            return View(User);
-
+            return null;
         }
+
+        
 
         public ActionResult RegistartionComplite()
         {
@@ -56,7 +59,7 @@ namespace QuizCamp.Controllers
         public ActionResult Login(LoginModel model)
         {
             model.RememberMe = false;
-            if (ModelState.IsValid && WebSecurity.Login(model.Username, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid && WebSecurity.Login(model.Username, model.Password, persistCookie: model.RememberMe) )
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -99,6 +102,18 @@ namespace QuizCamp.Controllers
         public ActionResult Changed(String message)
         {
             return View(message);
+        }
+
+        public ActionResult Verify(string id)
+        {
+            Guid userId;
+            if (Guid.TryParse(id, out userId))
+            {
+                account.Verify(userId);
+                return RedirectToAction("Index", "Home");
+            }
+            return null;
+
         }
     }
 }

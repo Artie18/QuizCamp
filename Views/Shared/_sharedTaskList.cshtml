@@ -1,5 +1,5 @@
 ﻿@model List<CodeTask>
-
+@Html.Action("Localization", "Home")
 <script src="@Href("~/Scripts/Markdown.js")"></script>
 
 @foreach (var task in Model)
@@ -14,7 +14,7 @@
         <div>
             <h3  style="margin-top: 3%; margin-left: 40%;">@Html.ActionLink(@task.Name, "Details", "Task", new { id = task.CodeTaskId }, null)</h3>
             <div class="hero-unit codeTaskContent" style="background-color: #F2F2F2;">@task.Content</div>
-            <button class="btn-success">@Html.ActionLink("View", "Details", "Task", new { id = task.CodeTaskId }, null)</button>
+            <button class="btn-success">@Html.ActionLink(@Resources.Resources.View, "Details", "Task", new { id = task.CodeTaskId }, null)</button>
         </div>
 
     </div>

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using QuizCamp.Models.Search;
 
 namespace QuizCamp
 {
@@ -24,15 +25,11 @@ namespace QuizCamp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             System.Data.Entity.Database.SetInitializer<DataContext>(new DataContextInitializer());
             Database.SetInitializer(new DropCreateDatabaseAlways<DataContext>());
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru");
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru");
-	        using (var dataContext = new DataContext())
+            using (var dataContext = new DataContext())
             {
                dataContext.Users.Count();
             }
              
         }
-
-
     }
 }

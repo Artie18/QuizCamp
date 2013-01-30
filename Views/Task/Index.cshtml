@@ -1,4 +1,5 @@
-﻿@if (Request.IsAuthenticated)
+﻿@Html.Action("Localization", "Home")
+@if (Request.IsAuthenticated)
 {
     Layout = "~/Views/Shared/_Layout.cshtml";
 }

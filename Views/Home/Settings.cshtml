@@ -1,0 +1,16 @@
+﻿@using Resources
+@Html.Action("Localization", "Home")
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@if (WebSecurity.IsAuthenticated)
+{
+    <h2>@Resources.Settings</h2>
+    <h2>@Resources.Language</h2>
+    <div>
+
+        <button class="btn-large btn-info">@Html.ActionLink(@Resources.Rus, "SetLocale", "Home", new { locale = "ru" }, null) </button>
+        <button class="btn-large btn-info">@Html.ActionLink(@Resources.Eng, "SetLocale", "Home", new { locale = "en" }, null) </button>
+
+    </div>
+}

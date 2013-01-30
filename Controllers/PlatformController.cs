@@ -26,7 +26,7 @@ namespace QuizCamp.Controllers
         [HttpPost]
         public ActionResult Add(Platform platform)
         {
-            var platformProvider = new PlatformModel();
+            var platformProvider = new PlatformProvider();
             platformProvider.Add(platform);
             return RedirectToAction("Index", "Home");
         }

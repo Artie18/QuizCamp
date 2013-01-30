@@ -1,7 +1,8 @@
-﻿ <div id="taskPaginator" class="pagination pagination-centered pagination-large">
+﻿@Html.Action("Localization", "Home")
+<div id="taskPaginator" class="pagination pagination-centered pagination-large">
         <ul>
-            <li class="disabled"><a href="#">Prev</a></li>
+            <li class="disabled"><a id="prev"  href="#">@Resources.Resources.Previous</a></li>
             <li class="active"><a href="#">1</a></li>
-            <li><a href="#">Next</a></li>
+            <li><a id ="next" href="#">@Resources.Resources.Next</a></li>
         </ul>
  </div>

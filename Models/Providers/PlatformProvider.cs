@@ -5,7 +5,7 @@ using System.Web;
 
 namespace QuizCamp.Models.Providers
 {
-    public class PlatformModel : DatabaseInitializer
+    public class PlatformProvider : DatabaseInitializer
     {
         public void Add(Platform platform)
         {

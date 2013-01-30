@@ -11,7 +11,7 @@ namespace QuizCamp.Controllers
     public class TagController : Controller
     {
         private static DataContext db = new DataContext();
-        private TagModel tagModel = new TagModel();
+        private TagProvider tagModel = new TagProvider();
         //
         // GET: /Tag/
 

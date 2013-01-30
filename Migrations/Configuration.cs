@@ -14,20 +14,24 @@ namespace QuizCamp.Migrations
 
         protected override void Seed(DataContext context)
         {
-            context.Tags.AddOrUpdate( new Tag{ Name = "super cool", TagId = new Guid()});
-            context.SaveChanges();
-            //  This method will be called after migrating to the latest version.
+            context.Tags.AddOrUpdate( new Tag{ Name = "super", TagId = new Guid()});
+            /*
+	  
+            context.Users.FirstOrDefault(x => x.Username == "qwerty").Roles.Add(context.Roles.FirstOrDefault(y => y.RoleName == "admin"));
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+	
+*/
+            /*
+	      foreach (var user in context.Users.ToList())
+            {
+                user.Roles.Add(new Role { RoleName = "user", RoleId = Guid.NewGuid() });
+            }
+	
+*/
+            context.Roles.Add(new Role { RoleName = "admin", RoleId = Guid.NewGuid() });
+            context.Roles.Add(new Role { RoleName = "user", RoleId = Guid.NewGuid() });
+            context.SaveChanges();
+            
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿@model QuizCamp.ViewModels.TaskViewModel
+@Html.Action("Localization", "Home")
 @{
     ViewBag.Title = "Edit";
 }
 
 @if (Request.IsAuthenticated)
 {
+    
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 else
@@ -15,10 +17,10 @@ else
 @{
     ViewBag.Title = "AddTask";
 }
-<script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepEditor.js")"></script>
-<script type="text/javascript" src="@Href("~/Scripts/MarkdownDeepEditorUI.js")"></script>
-<script src="@Href("~/Scripts/Markdown.js")"></script>
-<link rel="stylesheet" href="@Href("~/Scripts/mdd_styles.css")" type="text/css" />
+<script type="text/javascript" src="@Href("~/Scripts/Markdown/MarkdownDeepEditor.js")"></script>
+<script type="text/javascript" src="@Href("~/Scripts/Markdown/MarkdownDeepEditorUI.js")"></script>
+<script src="@Href("~/Scripts/Markdown/Markdown.js")"></script>
+<link rel="stylesheet" href="@Href("~/Scripts/Markdown/mdd_styles.css")" type="text/css" />
 
 @using (Html.BeginForm("Edit", "Task", FormMethod.Post))
 {
@@ -29,9 +31,7 @@ else
                 @Html.EditorFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
-
             <h3 class="control-label">Content</h3>
-
             <div class="mdd_toolbar"></div>
             <div>@Html.TextAreaFor(model => model.Content, new { @class = "mdd_editor", @cols = 50, @rows = 10, })</div>
             <div class="mdd_preview"></div>
@@ -45,10 +45,10 @@ else
                 <select class="text-box single-line" data-val="true" data-val-required="The Name field is required." id="Platform_Name" name="Platform.Name" type="text" value="">
                 </select>
             </div>
-        <p>
-            <button class="btn btn-success" type="submit" value="AddTask">Add It</button>
-        </p>
-    </div>
+            <p>
+                <button class="btn btn-success" type="submit" value="AddTask">Add It</button>
+            </p>
+        </div>
 </div>
 }
 

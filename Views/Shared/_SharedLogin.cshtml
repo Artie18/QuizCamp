@@ -1,14 +1,12 @@
 ﻿@model QuizCamp.ViewModels.LoginModel
+@Html.Action("Localization", "Home")
 @{
-
-
-
 using (Html.BeginForm("LogIn","Account",FormMethod.Post))
 {
 
     <div>
         <div class="control-label">
-            @Html.LabelFor(model => model.Username)
+            <label>@Resources.Resources.UserName</label>
         </div>
         <div class="input-xlarge">
             @Html.EditorFor(model => model.Username)
@@ -16,7 +14,7 @@ using (Html.BeginForm("LogIn","Account",FormMethod.Post))
         </div>
 
         <div class="control-label">
-            @Html.LabelFor(model => model.Password)
+            <label>@Resources.Resources.Password</label>
         </div>
         <div class="input-xlarge">
             @Html.EditorFor(model => model.Password)
@@ -24,7 +22,7 @@ using (Html.BeginForm("LogIn","Account",FormMethod.Post))
         </div>
 
         <button class="btn btn-success" type="submit" value="Login">
-            LogIn
+            @Resources.Resources.LogIn
         </button>
     </div>
 }
